@@ -1,0 +1,37 @@
+package com.example.rules;
+
+import org.example.Object.RuleCase;
+import org.example.Object.RuleResult;
+import org.example.Object.RuleStep;
+global java.util.List resultList
+
+rule "UNI_001"
+	dialect "mvel"
+	when 
+		RuleCase(GROUPID=="GRP_UNI_MED", ACTIVITY=="COM_001")
+		RuleStep(MEDICAL_SKIP_APPROVAL =="NO")
+	then 
+		RuleResult result = new RuleResult();result.setDestination("STOP");result.setRuleName("UNI_001");result.setExtraAct("STOP");insert(result);
+end
+
+rule "UNI_002"
+	dialect "mvel"
+	when 
+		RuleCase(GROUPID=="GRP_UNI_MED", ACTIVITY=="COM_START")
+		RuleStep(MEDICAL_SKIP_APPROVAL =="YES")
+	then 
+		RuleResult result = new RuleResult();result.setDestination("COM_002");result.setRuleName("UNI_002");result.setExtraAct("PEND:003");insert(result);
+end
+
+import org.example.Object.RuleCase;
+import org.example.Object.RuleResult;
+import org.example.Object.RuleStep;
+global java.util.List resultList
+rule "SYS_AddtoResultList"
+	dialect "mvel"
+	when 
+		result : RuleResult()
+	then 
+		System.out.println("rule AddtoResultList is ok");
+		resultList.add(result);
+end
