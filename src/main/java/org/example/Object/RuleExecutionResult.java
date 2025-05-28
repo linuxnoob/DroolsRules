@@ -9,7 +9,7 @@ public class RuleExecutionResult {
     public RuleExecutionResult(String ruleName, String destination,String  extraAct) {
         this.ruleName = ruleName;
         this.destination = destination;
-        this.ruleName = extraAct;
+        this.extraAct = extraAct;
     }
 
     public String getRuleName() {

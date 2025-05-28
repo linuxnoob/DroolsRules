@@ -27,7 +27,7 @@ public class DroolsRuleEvaluator {
             String jsonInput = "{\n" +
                     "  \"GROUPID\" : \"GRP_UNI_MED\",\n" +
                     "  \"ACTIVITY\" : \"COM_START\",\n" +
-                    "  \"MEDICAL_SKIP_APPROVAL\" : \"NO\"\n" +
+                    "  \"MEDICAL_SKIP_APPROVAL\" : \"YES\"\n" +
                     "}";
 
             Map<String, String> params = parseJsonInput(jsonInput);
